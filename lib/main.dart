@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_cluster/utils/config/theme.dart';
 import 'utils/routes.dart';
 
 void main() async {
@@ -22,9 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
+      theme: AppThemes.primaryTheme(),
       initialRoute: AppRoute.myCluster,
       onGenerateRoute: AppRoute.onGenerateRoute,
     );
