@@ -15,9 +15,9 @@ class MembersCubit extends Cubit<MembersState> {
 
   void init() {
     memberRepository.getMembersData().then((value) {
-      emit(MembersLoaded(value.data!));
+      emit(MembersLoaded(value.data ?? Data()));
     }).catchError((e) {
-      print('This is error $e');
+      throw e;
     });
   }
 }

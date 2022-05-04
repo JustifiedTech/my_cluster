@@ -10,7 +10,7 @@ class MembersInitial extends MembersState {
 class MembersLoaded extends MembersState {
   final Data memberData;
 
-  MembersLoaded(this.memberData);
+  const MembersLoaded(this.memberData);
 
   @override
   List<Object?> get props => [memberData];
