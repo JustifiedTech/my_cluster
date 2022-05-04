@@ -1,8 +1,23 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../models/api_response.dart';
+import '../../repository/members_repository.dart';
+
 part 'members_state.dart';
 
 class MembersCubit extends Cubit<MembersState> {
-  MembersCubit() : super(MembersInitial());
+  final MemberRepository memberRepository;
+
+  MembersCubit(this.memberRepository) : super(MembersInitial()) {
+    init();
+  }
+
+  void init() {
+    memberRepository.getMembersData().then((value) {
+      emit(MembersLoaded(value.data!));
+    }).catchError((e) {
+      print('This is error $e');
+    });
+  }
 }

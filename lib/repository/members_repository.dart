@@ -1,15 +1,14 @@
+import 'package:my_cluster/models/api_response.dart';
+
 import '../service/api_service.dart';
 
 class MemberRepository {
   final ApiService apiService;
-  MemberRepository(this.apiService)
+  MemberRepository(this.apiService);
 
-  Future<ApiResponse> getMembersData(int page) async {
-    return apiService.getRequest<ApiResponse>(
-      transform: (dynamic res) {
-        final response = ApiResponse.fromMap(res['data']);
-        return response;
-      },
-    );
+  Future<ApiResponse> getMembersData() async {
+    final response = await apiService.getRequest();
+    print(response);
+    return ApiResponse.fromMap(response);
   }
 }

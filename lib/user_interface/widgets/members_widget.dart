@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_cluster/utils/config/size_config.dart';
 import 'package:my_cluster/utils/config/theme.dart';
 
+import '../../bloc_providers/cubit/members_cubit.dart';
 import '../../utils/config/constants.dart';
 import '../components/custom_divider.dart';
 import '../components/image_card.dart';
@@ -14,45 +16,49 @@ class MembersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padded(
-      child: ListView(
-        children: const [
-          RowTile(title: 'Overdue Loans'),
-          ListBuilder(
-            list: ['', ''],
-            color: AppColors.redDarkest,
-          ),
-          CustomDivider(),
-          RowTile(title: 'Due Today'),
-          ListBuilder(list: [
-            '',
-            '',
-          ], color: AppColors.yellowDarkest),
-          CustomDivider(),
-          RowTile(title: 'Active Loans'),
-          ListBuilder(list: [
-            '',
-            '',
-            '',
-          ], color: AppColors.greenDarkest),
-          CustomDivider(),
-          Space(
-            height: 20,
-          ),
-          RowTile(title: 'Inactive Loans'),
-          ListBuilder(
-            list: [
-              '',
-              '',
-              '',
+    return BlocBuilder<MembersCubit, MembersState>(
+      builder: (context, state) {
+        return Padded(
+          child: ListView(
+            children: const [
+              RowTile(title: 'Overdue Loans'),
+              ListBuilder(
+                list: ['', ''],
+                color: AppColors.redDarkest,
+              ),
+              CustomDivider(),
+              RowTile(title: 'Due Today'),
+              ListBuilder(list: [
+                '',
+                '',
+              ], color: AppColors.yellowDarkest),
+              CustomDivider(),
+              RowTile(title: 'Active Loans'),
+              ListBuilder(list: [
+                '',
+                '',
+                '',
+              ], color: AppColors.greenDarkest),
+              CustomDivider(),
+              Space(
+                height: 20,
+              ),
+              RowTile(title: 'Inactive Loans'),
+              ListBuilder(
+                list: [
+                  '',
+                  '',
+                  '',
+                ],
+                showDot: false,
+              ),
+              Space(
+                height: 20,
+              ),
             ],
-            showDot: false,
           ),
-          Space(
-            height: 20,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -92,5 +98,3 @@ class ListBuilder extends StatelessWidget {
         separatorBuilder: (context, index) => const CustomDivider());
   }
 }
-
-
