@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_cluster/user_interface/widgets/members_widget.dart';
+import 'package:my_cluster/user_interface/widgets/tabs_widget.dart';
 
-class MyClusterView extends StatelessWidget {
+import 'widgets/cluster_details_widget.dart';
+
+class MyClusterView extends StatefulWidget {
   const MyClusterView({Key? key}) : super(key: key);
 
   @override
+  State<MyClusterView> createState() => _MyClusterViewState();
+}
+
+class _MyClusterViewState extends State<MyClusterView> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-          preferredSize:
-              const Size.fromHeight(300.0), // here the desired height
-          child: AppBar(
-            elevation: 0,
-            centerTitle: true,
-            leading: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            title: const Text(
-              "My cluster",
-              style: TextStyle(color: Colors.white),
-            ),
-          )),
-    );
+    return TabsWidget(first: MembersWidget(), second: ClusterDetailsWidget());
   }
 }
