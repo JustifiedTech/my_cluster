@@ -50,13 +50,13 @@ class Data {
   int? clusterPurseBalance;
   int? totalInterestEarned;
   int? totalOwedByMembers;
-  List<dynamic>? overdueAgents;
+  List<AgentInfo>? overdueAgents;
   String? clusterName;
   double? clusterRepaymentRate;
   String? clusterRepaymentDay;
-  List<dynamic>? dueAgents;
-  List<ActiveAgent>? activeAgents;
-  List<ActiveAgent>? inactiveAgents;
+  List<AgentInfo>? dueAgents;
+  List<AgentInfo>? activeAgents;
+  List<AgentInfo>? inactiveAgents;
 
   factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
 
@@ -68,21 +68,21 @@ class Data {
         totalOwedByMembers: json["total_owed_by_members"],
         overdueAgents: json["overdue_agents"] == null
             ? null
-            : List<dynamic>.from(json["overdue_agents"].map((x) => x)),
+            : List<AgentInfo>.from(json["overdue_agents"].map((x) => AgentInfo.fromMap(x))),
         clusterName: json["cluster_name"],
         clusterRepaymentRate: json["cluster_repayment_rate"]?.toDouble(),
         clusterRepaymentDay: json["cluster_repayment_day"],
         dueAgents: json["due_agents"] == null
             ? null
-            : List<dynamic>.from(json["due_agents"].map((x) => x)),
+            : List<AgentInfo>.from(json["due_agents"].map((x) => AgentInfo.fromMap(x))),
         activeAgents: json["active_agents"] == null
             ? null
-            : List<ActiveAgent>.from(
-                json["active_agents"].map((x) => ActiveAgent.fromMap(x))),
+            : List<AgentInfo>.from(
+                json["active_agents"].map((x) => AgentInfo.fromMap(x))),
         inactiveAgents: json["inactive_agents"] == null
             ? null
-            : List<ActiveAgent>.from(
-                json["inactive_agents"].map((x) => ActiveAgent.fromMap(x))),
+            : List<AgentInfo>.from(
+                json["inactive_agents"].map((x) => AgentInfo.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -107,8 +107,8 @@ class Data {
       };
 }
 
-class ActiveAgent {
-  ActiveAgent({
+class AgentInfo {
+  AgentInfo({
     this.id,
     this.userId,
     this.agentId,
@@ -128,12 +128,12 @@ class ActiveAgent {
   DateTime? createdAt;
   Agent? agent;
 
-  factory ActiveAgent.fromJson(String str) =>
-      ActiveAgent.fromMap(json.decode(str));
+  factory AgentInfo.fromJson(String str) =>
+      AgentInfo.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ActiveAgent.fromMap(Map<String, dynamic> json) => ActiveAgent(
+  factory AgentInfo.fromMap(Map<String, dynamic> json) => AgentInfo(
         id: json["id"],
         userId: json["user_id"],
         agentId: json["agent_id"],

@@ -7,7 +7,6 @@ import 'widgets/cluster_details_widget.dart';
 class MyClusterView extends StatelessWidget {
   const MyClusterView({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return const TabsWidget(

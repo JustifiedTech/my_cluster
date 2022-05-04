@@ -4,6 +4,7 @@ abstract class MembersState extends Equatable {
   const MembersState();
 }
 class MembersInitial extends MembersState {
+  
   @override
   List<Object> get props => [];
 }

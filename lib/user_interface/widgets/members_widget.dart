@@ -4,6 +4,7 @@ import 'package:my_cluster/utils/config/size_config.dart';
 import 'package:my_cluster/utils/config/theme.dart';
 
 import '../../bloc_providers/cubit/members_cubit.dart';
+import '../../models/api_response.dart';
 import '../../utils/config/constants.dart';
 import '../components/custom_divider.dart';
 import '../components/image_card.dart';
@@ -18,45 +19,43 @@ class MembersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MembersCubit, MembersState>(
       builder: (context, state) {
-        return Padded(
-          child: ListView(
-            children: const [
-              RowTile(title: 'Overdue Loans'),
-              ListBuilder(
-                list: ['', ''],
-                color: AppColors.redDarkest,
-              ),
-              CustomDivider(),
-              RowTile(title: 'Due Today'),
-              ListBuilder(list: [
-                '',
-                '',
-              ], color: AppColors.yellowDarkest),
-              CustomDivider(),
-              RowTile(title: 'Active Loans'),
-              ListBuilder(list: [
-                '',
-                '',
-                '',
-              ], color: AppColors.greenDarkest),
-              CustomDivider(),
-              Space(
-                height: 20,
-              ),
-              RowTile(title: 'Inactive Loans'),
-              ListBuilder(
-                list: [
-                  '',
-                  '',
-                  '',
-                ],
-                showDot: false,
-              ),
-              Space(
-                height: 20,
-              ),
-            ],
-          ),
+        if (state is MembersLoaded) {
+          return Padded(
+            child: ListView(
+              children: [
+                const RowTile(title: 'Overdue Loans'),
+                ListBuilder(
+                  list: state.memberData.overdueAgents ?? [],
+                  color: AppColors.redDarkest,
+                ),
+                const CustomDivider(),
+                const RowTile(title: 'Due Today'),
+                ListBuilder(
+                    list: state.memberData.dueAgents ?? [],
+                    color: AppColors.yellowDarkest),
+                const CustomDivider(),
+                const RowTile(title: 'Active Loans'),
+                ListBuilder(
+                    list: state.memberData.activeAgents ?? [],
+                    color: AppColors.greenDarkest),
+                const CustomDivider(),
+                const Space(
+                  height: 20,
+                ),
+                const RowTile(title: 'Inactive Loans'),
+                ListBuilder(
+                  list: state.memberData.inactiveAgents ?? [],
+                  showDot: false,
+                ),
+                const Space(
+                  height: 20,
+                ),
+              ],
+            ),
+          );
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
         );
       },
     );
@@ -70,7 +69,7 @@ class ListBuilder extends StatelessWidget {
       this.showDot = true,
       this.color = AppColors.kText1})
       : super(key: key);
-  final List<dynamic> list;
+  final List<AgentInfo?> list;
   final bool showDot;
   final Color color;
 
@@ -79,20 +78,27 @@ class ListBuilder extends StatelessWidget {
     return ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: list.length,
-        itemBuilder: (contex, indext) {
+        itemCount: list.isEmpty ? 2 : list.length,
+        itemBuilder: (contex, index) {
+          final agent = list.isEmpty ? AgentInfo() : list[index];
           return ListTile(
             leading: const ImageCard(image: 'assets/images/Avatar-Small.png'),
             title: Row(children: [
-              Text("Hello, World ", style: textStyleRegular(13.16)),
+              Text(
+                  '${agent?.agent?.lastName ?? 'Florence '} ${agent?.agent?.firstName ?? 'Tanika '}',
+                  style: textStyleRegular(13.16)),
               showDot
                   ? const Icon(Icons.circle, size: 5, color: AppColors.kGrey)
                   : Container(),
               Text(" 3 days over due",
                   style: textStyleRegular(13.16, color: color)),
             ]),
-            subtitle: Text('₦10,555,000 Late loan ',
-                style: textStyleBold(12, color: color)),
+            subtitle: showDot
+                ? Text(
+                    '₦${agent?.agent?.recentLoan?.loanAmount ?? '10,555,000 Late loan '}',
+                    style: textStyleBold(12, color: color))
+                : Text('No active loans',
+                    style: textStyleBold(12, color: color)),
           );
         },
         separatorBuilder: (context, index) => const CustomDivider());

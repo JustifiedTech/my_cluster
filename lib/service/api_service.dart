@@ -8,7 +8,7 @@ class ApiService {
     HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8'
   };
 
-  Future<dynamic> getRequest() async {
+  Future<Map<String, dynamic>> getRequest() async {
     try {
       final response = await http.get(
         Uri.parse('https://moni-staging-1.vercel.app/api/loans'),
@@ -16,7 +16,7 @@ class ApiService {
       );
       final dynamic data = json.decode(response.body);
       if (response.statusCode == 200) {
-        return data['data'];
+        return data;
       } else {
         return data;
       }

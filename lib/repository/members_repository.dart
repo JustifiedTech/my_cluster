@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:my_cluster/models/api_response.dart';
 
 import '../service/api_service.dart';
@@ -8,7 +11,6 @@ class MemberRepository {
 
   Future<ApiResponse> getMembersData() async {
     final response = await apiService.getRequest();
-    print(response);
     return ApiResponse.fromMap(response);
   }
 }

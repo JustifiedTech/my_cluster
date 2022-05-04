@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -15,7 +17,8 @@ class MembersCubit extends Cubit<MembersState> {
 
   void init() {
     memberRepository.getMembersData().then((value) {
-      emit(MembersLoaded(value.data ?? Data()));
+      log(value.data!.toJson());
+      emit(MembersLoaded(value.data!));
     }).catchError((e) {
       throw e;
     });
