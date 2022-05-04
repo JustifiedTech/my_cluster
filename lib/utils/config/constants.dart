@@ -7,6 +7,7 @@ class AppColors {
   // static final Colors sharedInstance = Colors._sharedInstance();
   static const primarysBrandBase = Color(0xFFE66652);
   static const darkBase = Color(0xFF404446);
+  static const darkLighter = Color(0xFF72777A);
   static const darkDark = Color(0xFF303437);
   static const darkDarkest = Color(0xFF090A0A);
   static const greysWhite = Color(0xFFFFFFFF);

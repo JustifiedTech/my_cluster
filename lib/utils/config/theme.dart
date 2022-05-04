@@ -11,12 +11,12 @@ class AppThemes {
       appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             color: Colors.black,
-            fontFamily: 'Gilroy-Regular',
+            fontFamily: 'DMSans',
             fontSize: 12,
           ),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black)),
-      fontFamily: 'Gilroy-Regular',
+      fontFamily: 'DMSans',
       textTheme: textTheme(),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       primaryColor: AppColors.primarysBrandBase,
@@ -30,7 +30,7 @@ class AppThemes {
 TextTheme textTheme() {
   return const TextTheme(
     bodyText1: TextStyle(
-        fontFamily: 'Gilroy-medium',
+        fontFamily: 'DMSans',
         color: AppColors.kText1,
         fontSize: 12,
         fontWeight: FontWeight.w400),
@@ -42,8 +42,8 @@ TextTheme textTheme() {
 TextStyle textStyleBold(double size, {Color color = AppColors.kText1}) {
   return TextStyle(
       fontSize: getProportionateScreenWidth(size),
-      fontFamily: 'Gilroy-Bold',
-      fontWeight: FontWeight.w400,
+      fontFamily: 'DMSans',
+      fontWeight: FontWeight.bold,
       height: 1.5,
       color: color);
 }
@@ -51,7 +51,7 @@ TextStyle textStyleBold(double size, {Color color = AppColors.kText1}) {
 TextStyle textStyleMedium(double size, {Color color = AppColors.kText1}) {
   return TextStyle(
       fontSize: getProportionateScreenWidth(size),
-      fontFamily: 'Gilroy-medium',
+      fontFamily: 'DMSans',
       fontWeight: FontWeight.w400,
       height: 1.5,
       color: color);

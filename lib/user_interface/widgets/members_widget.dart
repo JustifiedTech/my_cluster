@@ -4,6 +4,7 @@ import 'package:my_cluster/utils/config/theme.dart';
 
 import '../../utils/config/constants.dart';
 import '../components/custom_divider.dart';
+import '../components/image_card.dart';
 import '../components/padded.dart';
 import '../components/row_tile.dart';
 import '../components/space.dart';
@@ -75,16 +76,7 @@ class ListBuilder extends StatelessWidget {
         itemCount: list.length,
         itemBuilder: (contex, indext) {
           return ListTile(
-            leading: Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
-              width: getProportionateScreenWidth(40),
-              height: getProportionateScreenHeight(40),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset('assets/images/Avatar-Small.png'),
-              ),
-            ),
+            leading: const ImageCard(image: 'assets/images/Avatar-Small.png'),
             title: Row(children: [
               Text("Hello, World ", style: textStyleRegular(13.16)),
               showDot
@@ -100,3 +92,5 @@ class ListBuilder extends StatelessWidget {
         separatorBuilder: (context, index) => const CustomDivider());
   }
 }
+
+
