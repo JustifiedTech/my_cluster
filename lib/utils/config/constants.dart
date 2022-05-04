@@ -2,23 +2,33 @@ import 'package:flutter/material.dart';
 
 import 'size_config.dart';
 
-const kBlack = Color(0xFF3B3B3B);
-
-const kPurple = Color(0xFF7765C4);
-
-const kDarkpurple = Color(0xFF6C648E);
-const kGreen = Color(0xFF65C4AD);
-const kGrey = Color(0xFF707070);
-const kList = Color(0xFFFAF9FF);
-const kRed = Color(0xFFE47673);
-const kPurpleA = Color.fromARGB(10, 119, 101, 196);
-const kGreenA = Color.fromARGB(10, 101, 173, 196);
-
-TextStyle textStyle(double size,
-    {Color color = kBlack, fontWeight = FontWeight.w400}) {
-  return TextStyle(
-    fontSize: getProportionateScreenWidth(size),
-    color: color,
-    fontWeight: fontWeight,
-  );
+class AppColors {
+  // Colors._sharedInstance();
+  // static final Colors sharedInstance = Colors._sharedInstance();
+  static const primarysBrandBase = Color(0xFFE66652);
+  static const darkBase = Color(0xFF404446);
+  static const darkDark = Color(0xFF303437);
+  static const darkDarkest = Color(0xFF090A0A);
+  static const greysWhite = Color(0xFFFFFFFF);
+  static const greysBase = Color(0xFFCDCFD0);
+  static const yellowDarkest = Color(0xFFA05E03);
+  static const redDarkest = Color(0xFFE41002);
+  static const secondaryBrandBase = Color(0xFFF0CC79);
+  static const secondaryBrandDarkest = Color(0xFFEAB948);
+  static const secondaryBrandLightest = Color(0xFFFDF8ED);
+  static const greenLighter = Color(0xFF7DDE86);
+  static const greenDarkest = Color(0xFF198155);
+  static const kText1 = Color(0xFF13163E);
+  static const kText2 = Color(0xFF4F6482);
+  static const kGrey = Color(0xFFC4C4C4);
+  static const kGrey5 = Color(0xFFEBF1F9);
 }
+
+// TextStyle textStyle(double size,
+//     {Color color = kBlack, fontWeight = FontWeight.w400}) {
+//   return TextStyle(
+//     fontSize: getProportionateScreenWidth(size),
+//     color: color,
+//     fontWeight: fontWeight,
+//   );
+// }
